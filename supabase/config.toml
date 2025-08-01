@@ -1,0 +1,38 @@
+project_id = "xvojnnbjnleakecogqnd"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[auth]
+enabled = true
+port = 54324
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://localhost:3000"]
+jwt_expiry = 3600
+refresh_token_rotation_enabled = true
+secure_password_change_enabled = true
+enable_signup = true
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[edge_functions]
+enabled = true
+port = 54323
+
+[functions.process-payment]
+verify_jwt = true
+
+[functions.check-form-rate-limit]
+verify_jwt = false
+
+[storage]
+enabled = true
+port = 54324
+file_size_limit = "50MiB"

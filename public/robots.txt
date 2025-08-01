@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://tvanamm.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
