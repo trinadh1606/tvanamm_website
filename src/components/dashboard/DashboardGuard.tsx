@@ -58,6 +58,7 @@ export default function DashboardGuard() {
   if (!profile.role || !allowedRoles.includes(profile.role)) {
     return <Navigate to="/" replace />;
   }
+//Home... fix it 
 
   // Critical security check: User must be verified
   if (!profile.is_verified) {

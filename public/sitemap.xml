@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
   <url>
     <loc>https://tvanamm.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
   </url>
-  <url>
-    <loc>https://tvanamm.com/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2025-01-31</lastmod>
-  </url>
+
+  <!-- Franchise Page (Critical for SEO) -->
   <url>
     <loc>https://tvanamm.com/franchise</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <lastmod>2025-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <lastmod>2025-08-02</lastmod>
   </url>
-  <url>
-    <loc>https://tvanamm.com/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2025-01-31</lastmod>
-  </url>
-  <url>
-    <loc>https://tvanamm.com/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2025-01-31</lastmod>
-  </url>
+
+  <!-- Order Page -->
   <url>
     <loc>https://tvanamm.com/order</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-08-02</lastmod>
   </url>
+
+  <!-- Blog Page -->
+  <url>
+    <loc>https://tvanamm.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <lastmod>2025-08-02</lastmod>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://tvanamm.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2025-08-02</lastmod>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://tvanamm.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2025-08-02</lastmod>
+  </url>
+
 </urlset>

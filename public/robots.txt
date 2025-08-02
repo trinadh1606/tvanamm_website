@@ -1,11 +1,22 @@
 User-agent: *
 Allow: /
+
+# Block sensitive or admin areas from indexing
 Disallow: /dashboard/
 Disallow: /admin/
 Disallow: /api/
+Disallow: /auth/
+Disallow: /*?* # Block URL parameters to prevent duplicate indexing
 
-# Sitemap
+# Allow search engines to access assets for rendering
+Allow: /static/
+Allow: /assets/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Sitemap location
 Sitemap: https://tvanamm.com/sitemap.xml
 
-# Crawl-delay
+# Recommended crawl delay to prevent overload
 Crawl-delay: 1
