@@ -51,7 +51,9 @@ export const useFranchiseOverview = () => {
       };
     },
     enabled: !!user,
-    refetchInterval: 30000, // Real-time updates every 30 seconds
+    staleTime: 60 * 1000, // 1 minute cache
+    refetchInterval: 60000, // Refresh every 1 minute
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -99,6 +101,8 @@ export const useFranchiseRecentActivity = () => {
         .slice(0, 5);
     },
     enabled: !!user,
-    refetchInterval: 15000, // Real-time updates every 15 seconds
+    staleTime: 45 * 1000, // 45 seconds cache
+    refetchInterval: 45000, // Refresh every 45 seconds
+    refetchOnWindowFocus: false,
   });
 };

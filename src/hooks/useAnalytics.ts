@@ -67,10 +67,10 @@ export const useAnalytics = () => {
         activeFranchises: activeFranchises || 0
       };
     },
-    staleTime: 0, // Always refetch
-    refetchInterval: 5000, // Refetch every 5 seconds
-    refetchOnWindowFocus: true,
-    refetchOnMount: true
+    staleTime: 5 * 60 * 1000, // 5 minutes cache
+    refetchInterval: 60000, // Refetch every 1 minute
+    refetchOnWindowFocus: false,
+    refetchOnMount: false
   });
 };
 
@@ -123,6 +123,8 @@ export const useSalesTrend = () => {
         revenue
       }));
     },
+    staleTime: 10 * 60 * 1000, // 10 minutes cache
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -181,6 +183,8 @@ export const useProductDistribution = () => {
         quantity
       }));
     },
+    staleTime: 15 * 60 * 1000, // 15 minutes cache
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -232,6 +236,8 @@ export const useOrderStatusDistribution = () => {
         name: status.charAt(0).toUpperCase() + status.slice(1)
       }));
     },
+    staleTime: 5 * 60 * 1000, // 5 minutes cache
+    refetchOnWindowFocus: false,
   });
 };
 
@@ -287,5 +293,7 @@ export const useRecentActivities = () => {
         time: order.created_at
       }));
     },
+    staleTime: 2 * 60 * 1000, // 2 minutes cache
+    refetchOnWindowFocus: false,
   });
 };

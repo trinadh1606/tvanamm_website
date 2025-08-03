@@ -19,7 +19,6 @@ export const useRealTimeOrders = (searchTerm?: string, statusFilter?: string) =>
           table: 'orders'
         },
         (payload) => {
-          console.log('Order change:', payload);
           queryClient.invalidateQueries({ queryKey: ['orders'] });
           
           // Show notification for order status changes
@@ -96,7 +95,9 @@ export const useRealTimeOrders = (searchTerm?: string, statusFilter?: string) =>
 
       return orders;
     },
-    refetchInterval: 15000, // Refetch every 15 seconds
+    staleTime: 30 * 1000, // 30 seconds cache
+    refetchInterval: 30000, // Refetch every 30 seconds
+    refetchOnWindowFocus: false,
   });
 };
 

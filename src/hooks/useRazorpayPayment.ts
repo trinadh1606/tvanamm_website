@@ -26,6 +26,7 @@ export const useRazorpayPayment = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [razorpayKey, setRazorpayKey] = useState<string | null>(null);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -33,26 +34,24 @@ export const useRazorpayPayment = () => {
   useEffect(() => {
     const initializeRazorpay = async () => {
       try {
-        console.log('Initializing Razorpay...');
         const { data, error } = await supabase.functions.invoke('get-razorpay-key');
         
-        console.log('Razorpay key response:', { data, error });
-        
         if (error) {
-          console.error('Failed to get Razorpay key - error:', error);
+          setError('Failed to initialize payment system');
+          setIsInitialized(false);
           return;
         }
         
         if (!data || !data.success) {
-          console.error('Failed to get Razorpay key - no success:', data);
+          setError('Failed to initialize payment system');
+          setIsInitialized(false);
           return;
         }
-        
-        console.log('Razorpay key received:', data.key);
         setRazorpayKey(data.key);
         setIsInitialized(true);
       } catch (error) {
-        console.error('Error initializing Razorpay:', error);
+        setError('Error initializing payment system');
+        setIsInitialized(false);
       }
     };
 
@@ -71,7 +70,6 @@ export const useRazorpayPayment = () => {
           table: 'payment_transactions'
         },
         (payload) => {
-          console.log('Payment status updated:', payload);
           if (payload.new.status === 'completed') {
             queryClient.invalidateQueries({ queryKey: ['orders'] });
             queryClient.invalidateQueries({ queryKey: ['pendingOrders'] });
@@ -89,27 +87,15 @@ export const useRazorpayPayment = () => {
     mutationFn: async ({ orderId, amount, currency = 'INR', orderNumber }: PaymentOptions) => {
       // Convert amount from rupees to paise
       const amountInPaise = Math.round(amount * 100);
-      
-      console.log('Payment order request:', { 
-        orderId, 
-        originalAmount: amount, 
-        amountInPaise, 
-        currency, 
-        orderNumber 
-      });
 
       const { data, error } = await supabase.functions.invoke('create-razorpay-order', {
         body: { orderId, amount: amountInPaise, currency, orderNumber },
       });
 
-      console.log('Create order response:', data, error);
-
       if (error) {
-        console.error('Supabase function error:', error);
         throw error;
       }
       if (!data?.success) {
-        console.error('Function returned error:', data);
         throw new Error(data?.error || 'Unknown error');
       }
 
@@ -133,8 +119,6 @@ export const useRazorpayPayment = () => {
         },
       });
 
-      console.log('Payment verification response:', data, error);
-
       if (error) throw error;
       if (!data.success) throw new Error(data.error);
 
@@ -149,7 +133,6 @@ export const useRazorpayPayment = () => {
       });
     },
     onError: (error) => {
-      console.error('Payment verification failed:', error);
       toast({
         title: "Payment Verification Failed",
         description: "Please contact support if money was deducted.",
@@ -165,7 +148,6 @@ export const useRazorpayPayment = () => {
       // Check if Razorpay key is available, if not try to get it
       let currentKey = razorpayKey;
       if (!currentKey) {
-        console.log('Razorpay key not available, fetching...');
         const { data, error } = await supabase.functions.invoke('get-razorpay-key');
         
         if (error || !data.success) {
@@ -208,7 +190,7 @@ export const useRazorpayPayment = () => {
               orderId,
             });
           } catch (error) {
-            console.error('Payment verification error:', error);
+            // Error handling is done in the mutation
           }
         },
         prefill: {
@@ -238,7 +220,6 @@ export const useRazorpayPayment = () => {
       rzp.open();
 
     } catch (error) {
-      console.error('Payment initiation error:', error);
       toast({
         title: "Payment Failed",
         description: error instanceof Error ? error.message : "Failed to initiate payment. Please try again.",
