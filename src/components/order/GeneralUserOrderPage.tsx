@@ -39,7 +39,6 @@ import teaGardenHero from '@/assets/tea-garden-hero.webp';
 import teaTastingProfessional from '@/assets/tea-tasting-professional.webp';
 
 const teaHeritage = [
-  { icon: Mountain, title: 'Garden to Cup Journey', desc: 'From pristine Himalayan gardens to your cup', color: 'text-green-600' },
   { icon: Crown, title: 'Premium Selection', desc: 'Hand-picked finest tea leaves', color: 'text-yellow-600' },
   { icon: GraduationCap, title: 'Master Blenders', desc: 'Generations of tea expertise', color: 'text-blue-600' },
   { icon: Heart, title: 'Traditional Methods', desc: 'Time-honored brewing techniques', color: 'text-red-600' },
@@ -158,8 +157,6 @@ export const GeneralUserOrderPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             <Badge variant="secondary" className="px-6 py-3 text-lg">🌿 100% Organic Gardens</Badge>
-            <Badge variant="secondary" className="px-6 py-3 text-lg">🏔️ Himalayan Sourced</Badge>
-            <Badge variant="secondary" className="px-6 py-3 text-lg">👥 5 Generations Legacy</Badge>
             <Badge variant="secondary" className="px-6 py-3 text-lg">🏆 Award Winning Blends</Badge>
           </div>
         </div>
