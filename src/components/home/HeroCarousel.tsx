@@ -32,7 +32,7 @@ const slides = [
   {
     id: 3,
     image: heroCup,
-    title: "Upcoming Quality unforgetable taste",
+    title: "Uncompromising Quality unforgetable taste",
     subtitle: "Premium Quality, Authentic Flavor",
     description: "Experience the rich heritage and exceptional quality that makes T VANAMM special.",
     primaryCTA: "Order Now",

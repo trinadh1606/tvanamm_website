@@ -224,9 +224,10 @@ const About = () => {
                 <span className="block text-primary">Premium Tea</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-                Mrs. N. Naga Jyothi's vision since 2021 has been to revolutionize the tea industry 
-                by combining traditional wisdom with modern wellness principles, creating exceptional 
-                beverages that nurture both body and spirit.
+T Vanamm is more than a beverage brand — it's a vision to redefine daily indulgence through authentic flavors, accessible luxury, and inclusive opportunity. We believe that great taste should be both elevated and approachable — a sensory experience rooted in heritage, yet crafted for the modern world.
+Our carefully curated menu features over 120 items — from herbal teas and mocktails to shakes, ice creams, healthy juices, and wholesome snacks. Each item reflects our commitment to purity, richness, and innovation, designed to nourish the body and delight the senses.
+At the heart of T Vanamm is a bold ambition: to empower aspiring entrepreneurs and redefine tea culture through community-driven growth. With a low-entry franchise model, zero royalty fees, and end-to-end training, we provide a clear path for small investors and micro-entrepreneurs to thrive. Our model is built not just for profitability, but for shared success.
+We envision T Vanamm as the most trusted name in curated taste — known not only for the quality we serve but for the opportunity we create. Every cup and every plate is a step toward that vision — one of flavor, empowerment, and experience.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="brand" size="lg" onClick={() => navigate('/order')}>

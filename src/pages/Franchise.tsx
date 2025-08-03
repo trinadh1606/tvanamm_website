@@ -38,32 +38,32 @@ const Franchise = () => {
   } = useAuth();
   const benefits = [{
     icon: Store,
-    title: "Low Investment",
+    title: "High ROI investment",
     description: "Start your premium tea business with minimal capital investment and maximum growth potential",
     color: "emerald"
   }, {
     icon: TrendingUp,
     title: "Proven Business Model",
-    description: "Join 500+ successful partners with our time-tested franchise system and comprehensive support",
+    description: "Join 150+ successful partners with our time-tested franchise system and comprehensive support",
     color: "blue"
   }, {
     icon: Users,
-    title: "Growing Market",
+    title: "Trend Setting Menu",
     description: "Tap into India's ₹50,000+ crore tea market with increasing demand for premium quality products",
     color: "purple"
   }, {
     icon: Award,
     title: "Premium Brand",
-    description: "Partner with T VANAMM - a trusted name with 15+ years of excellence and thousands of satisfied customers",
+    description: "Partner with T VANAMM - a trusted name with 5+ years of excellence and thousands of satisfied customers",
     color: "orange"
   }, {
     icon: Shield,
-    title: "Territory Protection",
-    description: "Enjoy exclusive territorial rights with guaranteed protection from internal competition",
+    title: "Brand Regcognition",
+    description: "A Sustained brand with exclusive social media presence and esthablished market presence",
     color: "red"
   }, {
     icon: Headphones,
-    title: "Ongoing Support",
+    title: "Suppourt to Franchise partners",
     description: "Receive continuous training, marketing assistance, and dedicated business development support",
     color: "teal"
   }];
