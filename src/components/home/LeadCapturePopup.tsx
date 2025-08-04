@@ -6,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { X, Download } from 'lucide-react';
 import { useCreateLead } from '@/hooks/useLeads';
+import { sanitizeFormData, validateInput, isValidEmail, rateLimitTracker } from '@/utils/security';
+import { useToast } from '@/hooks/use-toast';
 import masterCatalogueImage from '@/assets/master-catalogue-2025.jpg';
 
 const LeadCapturePopup = () => {
@@ -18,6 +20,7 @@ const LeadCapturePopup = () => {
   });
 
   const createLeadMutation = useCreateLead();
+  const { toast } = useToast();
 
   useEffect(() => {
     // Show popup after 5 seconds if not shown before in this session
@@ -35,8 +38,42 @@ const LeadCapturePopup = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Client-side rate limiting
+    if (!rateLimitTracker.canAttempt('lead-capture', 3, 300000)) { // 3 attempts per 5 minutes
+      toast({
+        title: "Too Many Attempts",
+        description: "Please wait before submitting again.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Validate inputs
+    const nameValidation = validateInput(formData.name, 2, 100);
+    if (!nameValidation.isValid) {
+      toast({
+        title: "Invalid Name",
+        description: nameValidation.error,
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!isValidEmail(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Sanitize form data
+    const sanitizedData = sanitizeFormData(formData);
+    
     createLeadMutation.mutate({
-      ...formData,
+      ...sanitizedData,
       source: 'catalogue_download'
     });
     
@@ -63,42 +100,10 @@ const LeadCapturePopup = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-md max-w-[95vw] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-foreground pr-8">
+          <DialogTitle className="text-xl font-bold text-foreground">
             Download Our Master Catalogue 2025
           </DialogTitle>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-4 z-10"
-            onClick={() => setIsOpen(false)}
-          >
-            <X className="h-4 w-4" />
-          </Button>
         </DialogHeader>
-        
-        <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-6">
-          <div className="flex-1 order-2 sm:order-1">
-            <h3 className="text-lg font-semibold text-foreground mb-3">
-              Comprehensive Product Guide
-            </h3>
-            <p className="text-muted-foreground mb-4 text-sm">
-              Get access to our complete 2025 Master Catalogue featuring:
-            </p>
-            <ul className="text-sm text-muted-foreground space-y-1 mb-6">
-              <li>• Premium tea varieties & specifications</li>
-              <li>• Wholesale pricing & package details</li>
-              <li>• Franchise opportunities & investment info</li>
-              <li>• Quality certifications & sourcing details</li>
-            </ul>
-          </div>
-          <div className="w-full sm:w-32 flex-shrink-0 order-1 sm:order-2">
-            <img 
-              src={masterCatalogueImage} 
-              alt="Master Catalogue 2025" 
-              className="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg mx-auto"
-            />
-          </div>
-        </div>
         
         <div>
           
@@ -129,12 +134,13 @@ const LeadCapturePopup = () => {
             </div>
             
             <div>
-              <Label htmlFor="phone">Phone Number</Label>
+              <Label htmlFor="phone">Phone Number *</Label>
               <Input
                 id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
+                required
                 placeholder="Enter your phone number"
               />
             </div>
@@ -149,6 +155,30 @@ const LeadCapturePopup = () => {
                 placeholder="Any specific interests or questions?"
                 rows={3}
               />
+            </div>
+            
+            <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <div className="w-full sm:w-32 flex-shrink-0">
+                <img 
+                  src={masterCatalogueImage} 
+                  alt="Master Catalogue 2025" 
+                  className="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg mx-auto"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-foreground mb-3">
+                  Comprehensive Product Guide
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm">
+                  Get access to our complete 2025 Master Catalogue featuring:
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-1 mb-6">
+                  <li>• Premium tea varieties & specifications</li>
+                  <li>• Wholesale pricing & package details</li>
+                  <li>• Franchise opportunities & investment info</li>
+                  <li>• Quality certifications & sourcing details</li>
+                </ul>
+              </div>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 pt-4">

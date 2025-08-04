@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { useCreateLead } from '@/hooks/useLeads';
+import { sanitizeFormData, validateInput, isValidEmail, isValidPhone, rateLimitTracker } from '@/utils/security';
 
 interface FranchiseEnquiryModalProps {
   isOpen: boolean;
@@ -34,13 +35,61 @@ const FranchiseEnquiryModal: React.FC<FranchiseEnquiryModalProps> = ({ isOpen, o
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Client-side rate limiting
+    if (!rateLimitTracker.canAttempt('franchise-enquiry', 2, 600000)) { // 2 attempts per 10 minutes
+      toast({
+        title: "Too Many Attempts",
+        description: "Please wait before submitting another enquiry.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Validate inputs
+    const nameValidation = validateInput(formData.name, 2, 100);
+    if (!nameValidation.isValid) {
+      toast({
+        title: "Invalid Name",
+        description: nameValidation.error,
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!isValidEmail(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!isValidPhone(formData.phone)) {
+      toast({
+        title: "Invalid Phone",
+        description: "Please enter a valid phone number.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    const cityValidation = validateInput(formData.city, 2, 50);
+    if (!cityValidation.isValid) {
+      toast({
+        title: "Invalid City",
+        description: cityValidation.error,
+        variant: "destructive"
+      });
+      return;
+    }
+    
     try {
+      // Sanitize form data
+      const sanitizedData = sanitizeFormData(formData);
+      
       await createLead.mutateAsync({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        city: formData.city,
-        message: formData.message,
+        ...sanitizedData,
         source: 'franchise_enquiry'
       });
       

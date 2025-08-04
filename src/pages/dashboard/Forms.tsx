@@ -5,12 +5,15 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useLeads } from '@/hooks/useLeads';
-import { Mail, Phone, User, Calendar, FileText, Search } from 'lucide-react';
+import { useExportLeads } from '@/hooks/useLeadExport';
+import { Mail, Phone, User, Calendar, FileText, Search, Download, FileSpreadsheet } from 'lucide-react';
 
 const Forms = () => {
   const { data: leads, isLoading } = useLeads();
+  const { exportToExcel, exportToPDF } = useExportLeads();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [dateRange, setDateRange] = useState('30days');
 
   const filteredLeads = leads?.filter(lead => {
     const matchesSearch = 
@@ -53,18 +56,46 @@ const Forms = () => {
           <h1 className="text-3xl font-bold text-foreground">Forms & Leads</h1>
           <p className="text-muted-foreground">Manage and track your leads from various sources</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center flex-wrap">
           <Badge variant="outline" className="text-sm">
             {filteredLeads.length} Total Leads
           </Badge>
+          <Select value={dateRange} onValueChange={setDateRange}>
+            <SelectTrigger className="w-32">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="7days">Last 7 days</SelectItem>
+              <SelectItem value="30days">Last 30 days</SelectItem>
+              <SelectItem value="90days">Last 90 days</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => exportToExcel.mutate({ leads: filteredLeads, dateRange })}
+            disabled={exportToExcel.isPending || filteredLeads.length === 0}
+          >
+            <FileSpreadsheet className="w-4 h-4 mr-2" />
+            Export Excel
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => exportToPDF.mutate({ leads: filteredLeads, dateRange })}
+            disabled={exportToPDF.isPending || filteredLeads.length === 0}
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Export PDF
+          </Button>
         </div>
       </div>
 
       {/* Filters */}
       <Card>
         <CardContent className="p-6">
-          <div className="flex gap-4 items-center">
-            <div className="flex-1">
+          <div className="flex gap-4 items-center flex-wrap">
+            <div className="flex-1 min-w-[200px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input

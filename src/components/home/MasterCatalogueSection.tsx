@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Download, CheckCircle } from 'lucide-react';
 import { useCreateLead } from '@/hooks/useLeads';
+import { sanitizeFormData, validateInput, isValidEmail, isValidPhone, rateLimitTracker } from '@/utils/security';
+import { useToast } from '@/hooks/use-toast';
 import masterCatalogueImage from '@/assets/master-catalogue-2025.jpg';
 
 const MasterCatalogueSection = () => {
@@ -15,6 +17,7 @@ const MasterCatalogueSection = () => {
   });
   
   const createLeadMutation = useCreateLead();
+  const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
@@ -25,8 +28,51 @@ const MasterCatalogueSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Client-side rate limiting
+    if (!rateLimitTracker.canAttempt('master-catalogue', 3, 300000)) { // 3 attempts per 5 minutes
+      toast({
+        title: "Too Many Attempts",
+        description: "Please wait before submitting again.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Validate inputs
+    const nameValidation = validateInput(formData.name, 2, 100);
+    if (!nameValidation.isValid) {
+      toast({
+        title: "Invalid Name",
+        description: nameValidation.error,
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!isValidEmail(formData.email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!isValidPhone(formData.phone)) {
+      toast({
+        title: "Invalid Phone",
+        description: "Please enter a valid phone number.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Sanitize form data
+    const sanitizedData = sanitizeFormData(formData);
+    
     createLeadMutation.mutate({
-      ...formData,
+      ...sanitizedData,
       message: 'Master Catalogue Download Request',
       source: 'homepage_catalogue'
     });
