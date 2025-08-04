@@ -79,7 +79,7 @@ const MasterCatalogueSection = () => {
     
     // Simulate PDF download
     const link = document.createElement('a');
-    link.href = '/path-to-master-catalogue.pdf'; // Replace with actual PDF path
+    link.href = '/Uploads/T VANAMM MASTER CATALOUGE.pdf'; 
     link.download = 'T-VANAMM-Master-Catalogue-2025.pdf';
     document.body.appendChild(link);
     link.click();
