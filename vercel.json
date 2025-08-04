@@ -1,19 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/about",
-      "destination": "/"
-    },
-    {
-      "source": "/contact",
-      "destination": "/"
-    },
-    {
-      "source": "/blog",
-      "destination": "/"
-    },
-    {
-      "source": "/franchise",
+      "source": "/(.*)",
       "destination": "/"
     }
   ]
