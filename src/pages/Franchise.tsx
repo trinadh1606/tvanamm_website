@@ -67,11 +67,8 @@ const Franchise = () => {
     description: "Receive continuous training, marketing assistance, and dedicated business development support",
     color: "teal"
   }];
-  const supportServices = [{
-    icon: BookOpen,
-    title: "Training & Education",
-    description: "Comprehensive business training programs covering product knowledge, sales techniques, and customer service excellence"
-  }, {
+  const supportServices = [
+   {
     icon: GraduationCap,
     title: "Staff Training",
     description: "Professional team training modules to ensure your staff delivers exceptional customer experiences"
@@ -92,25 +89,7 @@ const Franchise = () => {
     title: "Business Analytics",
     description: "Performance tracking tools, sales analytics, and business intelligence to optimize your operations"
   }];
-  const testimonials = [{
-    name: "Rajesh Kumar",
-    location: "Mumbai",
-    rating: 5,
-    quote: "Joining T VANAMM was the best business decision I ever made. The support from the team has been exceptional, and my monthly revenue has consistently exceeded ₹3 lakhs.",
-    experience: "3 years"
-  }, {
-    name: "Priya Sharma",
-    location: "Bangalore",
-    rating: 5,
-    quote: "The franchise model is incredibly well-structured. From training to ongoing support, everything is professional. I've recovered my investment within 8 months.",
-    experience: "2 years"
-  }, {
-    name: "Amit Patel",
-    location: "Ahmedabad",
-    rating: 5,
-    quote: "T VANAMM's premium quality products and strong brand recognition make selling effortless. Customer retention is excellent, and profits keep growing month after month.",
-    experience: "4 years"
-  }];
+
   const investmentTiers = [{
     title: "City Franchise",
     investment: "₹5-8 Lakhs",
@@ -353,7 +332,7 @@ const Franchise = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[{
             step: "1",
-            title: "Application",
+            title: "Enquiry & Application",
             desc: "Submit application & initial discussion",
             icon: Briefcase,
             timeframe: "Day 1"
@@ -363,14 +342,22 @@ const Franchise = () => {
             desc: "Territory analysis & approval process",
             icon: Target,
             timeframe: "Week 1-2"
-          }, {
+          },
+          {
             step: "3",
+            title: "Agreement",
+            desc: "Sign franchise agreement and finalize terms",
+            icon: GraduationCap,
+            timeframe: "Week 3-4"
+          },
+          {
+            step: "4",
             title: "Training",
-            desc: "Comprehensive business & product training",
+            desc: "Comprehensive product training",
             icon: GraduationCap,
             timeframe: "Week 3-4"
           }, {
-            step: "4",
+            step: "5",
             title: "Launch",
             desc: "Grand opening with marketing support",
             icon: Trophy,
@@ -525,44 +512,6 @@ const Franchise = () => {
               </Button>
             </form>
           </Card>
-        </div>
-      </section>
-
-      {/* Awards & Certifications Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-6">Awards & Certifications</h2>
-            <p className="text-xl text-muted-foreground">
-              Recognized excellence in quality, business practices, and franchise support.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[{
-            title: "ISO 22000 Certified",
-            desc: "Food Safety Management",
-            icon: Shield
-          }, {
-            title: "Best Franchise Award",
-            desc: "Franchise Excellence 2023",
-            icon: Trophy
-          }, {
-            title: "Quality Assurance",
-            desc: "Premium Tea Standards",
-            icon: Award
-          }, {
-            title: "Business Excellence",
-            desc: "Industry Recognition",
-            icon: Star
-          }].map((cert, index) => <Card key={cert.title} className="p-6 bg-gradient-to-br from-background to-muted/20 hover:shadow-card transition-smooth text-center group">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-smooth">
-                  <cert.icon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-semibold text-foreground mb-2">{cert.title}</h3>
-                <p className="text-muted-foreground text-sm">{cert.desc}</p>
-              </Card>)}
-          </div>
         </div>
       </section>
 

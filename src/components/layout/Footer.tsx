@@ -67,7 +67,7 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground">Find Us</h4>
             <InteractiveMap 
               address="Plot No. 12, Rd Number 8, Gayatri Nagar, Vivekananda Nagar, Kukatpally, Hyderabad, Telangana 500072"
-              googleMapsLink="https://share.google.com/jCvevKPrXRy6yicgP"
+              googleMapsLink="https://share.google/oq0ibPT4H5TfWXDaI"
             />
           </div>
         </div>

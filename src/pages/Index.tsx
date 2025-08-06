@@ -2,7 +2,6 @@ import React from 'react';
 import { SEOEnhancer } from '@/components/SEO/SEOEnhancer';
 import { StructuredData } from '@/components/SEO/StructuredData';
 import HeroCarousel from '@/components/home/HeroCarousel';
-import FeaturesSection from '@/components/home/FeaturesSection';
 import TopPicksSection from '@/components/home/TopPicksSection';
 import MasterCatalogueSection from '@/components/home/MasterCatalogueSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
@@ -34,9 +33,6 @@ const Index = () => {
       
       {/* Statistics Section */}
       <StatisticsSection />
-      
-      {/* Features Section */}
-      <FeaturesSection />
       
       {/* Testimonials Section */}
       <TestimonialsSection />

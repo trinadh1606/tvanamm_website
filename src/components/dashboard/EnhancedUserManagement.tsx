@@ -12,6 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { useEnhancedUsers, useAssignUserDetails, useToggleDashboardAccess } from '@/hooks/useEnhancedUsers';
 import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 import { 
   Search, 
   Filter, 
@@ -36,6 +37,7 @@ export default function EnhancedUserManagement() {
   const { data: users, isLoading } = useEnhancedUsers();
   const assignUserDetails = useAssignUserDetails();
   const toggleDashboardAccess = useToggleDashboardAccess();
+  const { toast } = useToast();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState<string>('all');
@@ -103,21 +105,51 @@ export default function EnhancedUserManagement() {
   const submitAssignment = async () => {
     // Input validation
     if (!selectedUser || !assignmentForm.role) {
+      toast({
+        title: "Validation Error",
+        description: "Please select a user and role",
+        variant: "destructive"
+      });
       return;
     }
 
     // For non-owner roles, TVANAMM ID is required and must be valid
     if (assignmentForm.role !== 'owner') {
       if (!assignmentForm.tvanammId || assignmentForm.tvanammId.trim().length < 10) {
-        console.error('Invalid TVANAMM ID');
+        toast({
+          title: "Validation Error", 
+          description: "TVANAMM ID is required and must be at least 10 characters",
+          variant: "destructive"
+        });
         return;
       }
       
-      // Validate TVANAMM ID format (should start with TVN and be followed by year and numbers)
-      const tvanammRegex = /^TVN\d{4}\d{6,}$/;
-      if (!tvanammRegex.test(assignmentForm.tvanammId.trim())) {
-        console.error('Invalid TVANAMM ID format');
-        return;
+      // Role-specific TVANAMM ID validation
+      const year = new Date().getFullYear();
+      const yearPattern = `${year}`;
+      
+      if (assignmentForm.role === 'franchise') {
+        // Format: TV + YYYY + min 3 digits (e.g., TV2024001)
+        const pattern = new RegExp(`^TV${yearPattern}\\d{3,}$`);
+        if (!pattern.test(assignmentForm.tvanammId.trim())) {
+          toast({
+            title: "Validation Error",
+            description: `TVANAMM ID for franchise must be in format TV${year}XXX (e.g., TV${year}001)`,
+            variant: "destructive"
+          });
+          return;
+        }
+      } else if (assignmentForm.role === 'admin') {
+        // Format: TVAD + YYYY + min 3 digits (e.g., TVAD2024001)
+        const pattern = new RegExp(`^TVAD${yearPattern}\\d{3,}$`);
+        if (!pattern.test(assignmentForm.tvanammId.trim())) {
+          toast({
+            title: "Validation Error",
+            description: `TVANAMM ID for admin must be in format TVAD${year}XXX (e.g., TVAD${year}001)`,
+            variant: "destructive"
+          });
+          return;
+        }
       }
     }
 
@@ -125,16 +157,13 @@ export default function EnhancedUserManagement() {
     if (assignmentForm.storePhone && assignmentForm.storePhone.trim()) {
       const phoneRegex = /^[\+]?[1-9][\d\s\-\(\)]{8,15}$/;
       if (!phoneRegex.test(assignmentForm.storePhone.trim())) {
-        console.error('Invalid phone number format');
+        toast({
+          title: "Validation Error",
+          description: "Please enter a valid phone number",
+          variant: "destructive"
+        });
         return;
       }
-    }
-
-    // Validate role is one of allowed values
-    const allowedRoles = ['admin', 'franchise', 'owner'];
-    if (!allowedRoles.includes(assignmentForm.role)) {
-      console.error('Invalid role selected');
-      return;
     }
 
     try {
@@ -154,8 +183,12 @@ export default function EnhancedUserManagement() {
         storeLocation: '',
         storePhone: ''
       });
-    } catch (error) {
-      console.error('Assignment failed:', error);
+    } catch (error: any) {
+      toast({
+        title: "Assignment Failed",
+        description: error.message || "Failed to assign user details",
+        variant: "destructive"
+      });
     }
   };
 

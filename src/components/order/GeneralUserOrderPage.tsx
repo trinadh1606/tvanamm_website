@@ -40,11 +40,9 @@ import teaTastingProfessional from '@/assets/tea-tasting-professional.webp';
 
 const teaHeritage = [
   { icon: Crown, title: 'Premium Selection', desc: 'Hand-picked finest tea leaves', color: 'text-yellow-600' },
-  { icon: GraduationCap, title: 'Master Blenders', desc: 'Generations of tea expertise', color: 'text-blue-600' },
   { icon: Heart, title: 'Traditional Methods', desc: 'Time-honored brewing techniques', color: 'text-red-600' },
   { icon: Sparkles, title: 'Quality Assured', desc: 'International quality standards', color: 'text-purple-600' },
   { icon: Leaf, title: '100% Organic', desc: 'Pure, natural, chemical-free', color: 'text-emerald-600' },
-  { icon: Award, title: 'Award Winning', desc: 'Industry recognition & awards', color: 'text-orange-600' },
   { icon: Timer, title: 'Fresh Daily', desc: 'Prepared fresh every day', color: 'text-teal-600' }
 ];
 
@@ -156,8 +154,7 @@ export const GeneralUserOrderPage = () => {
             Discover the art of perfect tea brewing with our premium collection. From the pristine gardens of Darjeeling to traditional Assam estates, every cup tells a story of heritage, quality, and excellence.
           </p>
           <div className="flex flex-wrap justify-center gap-6 mb-12">
-            <Badge variant="secondary" className="px-6 py-3 text-lg">🌿 100% Organic Gardens</Badge>
-            <Badge variant="secondary" className="px-6 py-3 text-lg">🏆 Award Winning Blends</Badge>
+            <Badge variant="secondary" className="px-6 py-3 text-lg">🌿 100% Organic </Badge>
           </div>
         </div>
 
@@ -297,27 +294,6 @@ export const GeneralUserOrderPage = () => {
                 </div>
               ))}
             </div>
-            
-            {/* Tea Expert Testimonials */}
-            <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-center mb-8 text-foreground">What Tea Experts Say</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {testimonials.map((testimonial, index) => (
-                  <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
-                    <div className="flex justify-center mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-muted-foreground mb-4 italic leading-relaxed">"{testimonial.text}"</p>
-                    <div className="text-center">
-                      <p className="font-bold text-foreground">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.location}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </CardContent>
         </Card>
 
@@ -341,7 +317,7 @@ export const GeneralUserOrderPage = () => {
               <div className="flex items-start gap-4">
                 <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white font-bold">2</div>
                 <div>
-                  <h3 className="font-bold text-foreground mb-2">Choose Your Blend</h3>
+                  <h3 className="font-bold text-foreground mb-2">Choose Your Fav Tea</h3>
                   <p className="text-muted-foreground">Select from our premium collection of 30+ tea varieties</p>
                 </div>
               </div>
@@ -366,7 +342,7 @@ export const GeneralUserOrderPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white">
                 <p className="text-xl font-bold mb-2">Garden to Cup Excellence</p>
-                <p className="text-white/90">From our gardens to your perfect cup</p>
+                <p className="text-white/90">From Fresh Tea garden to your perfect cup</p>
               </div>
             </div>
           </div>
