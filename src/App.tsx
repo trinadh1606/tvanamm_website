@@ -33,7 +33,7 @@ import InvoiceManagement from "./pages/dashboard/InvoiceManagement";
 import FranchiseManagement from "./pages/dashboard/FranchiseManagement";
 import AdminDashboard from "./pages/dashboard/AdminDashboard";
 import SecurityDashboard from "./pages/dashboard/SecurityDashboard";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import Profile from "./pages/Profile";
