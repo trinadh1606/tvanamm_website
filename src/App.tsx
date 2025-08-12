@@ -41,116 +41,165 @@ import Orders from "./pages/Orders";
 import Invoices from "./pages/Invoices";
 import NotFound from "./pages/NotFound";
 
+// ✅ Add HelmetProvider for route-level SEO
+import { HelmetProvider } from "react-helmet-async";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <StickyPaymentReminder />
-          <Routes>
-            {/* Public routes with navbar */}
-            <Route path="/" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Index />
-                <Footer />
-              </div>
-            } />
-            <Route path="/about" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <About />
-                <Footer />
-              </div>
-            } />
-            <Route path="/franchise" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Franchise />
-                <Footer />
-              </div>
-            } />
-            <Route path="/order" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Order />
-                <Footer />
-              </div>
-            } />
-            <Route path="/contact" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Contact />
-                <Footer />
-              </div>
-            } />
-            <Route path="/blog" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Blog />
-                <Footer />
-              </div>
-            } />
-            <Route path="/profile" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Profile />
-                <Footer />
-              </div>
-            } />
-            <Route path="/orders" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Orders />
-                <Footer />
-              </div>
-            } />
-            <Route path="/invoices" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Invoices />
-                <Footer />
-              </div>
-            } />
-            <Route path="/auth" element={
-              <div className="min-h-screen bg-background flex flex-col">
-                <Navbar />
-                <Auth />
-                <Footer />
-              </div>
-            } />
-            
-            {/* Dashboard routes with DashboardGuard handling layout */}
-            <Route path="/dashboard" element={<DashboardGuard />}>
-              <Route index element={<Overview />} />
-              <Route path="admin" element={<AdminDashboard />} />
-              <Route path="analytics" element={<Analytics />} />
-              <Route path="order-history" element={<OrderHistory />} />
-              <Route path="inventory" element={<InventoryManagement />} />
-              <Route path="products" element={<ProductCatalog />} />
-              <Route path="users" element={<UserManagement />} />
-              <Route path="user-management" element={<NewUserManagementPage />} />
-              <Route path="statistics" element={<StatisticsManagementPage />} />
-              <Route path="testimonials" element={<TestimonialsManagementPage />} />
-              <Route path="blog" element={<BlogManagement />} />
-              <Route path="orders" element={<EnhancedOrderManagement />} />
-              <Route path="loyalty" element={<FranchiseLoyaltyPage />} />
-              <Route path="loyalty-management" element={<LoyaltyManagement />} />
-              <Route path="messages" element={<EnhancedMessages />} />
-              <Route path="forms" element={<Forms />} />
-              <Route path="invoices" element={<InvoiceManagement />} />
-              <Route path="franchise" element={<FranchiseManagement />} />
-              <Route path="security" element={<SecurityDashboard />} />
-            </Route>
-            
-            {/* Catch-all route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <HelmetProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            {/* If you only want this for franchise users, move it into those routes or gate by role */}
+            <StickyPaymentReminder />
+
+            <Routes>
+              {/* Public routes with navbar */}
+              <Route
+                path="/"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Index />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/about"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <About />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/franchise"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Franchise />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/order"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Order />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Contact />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/blog"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Blog />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Profile />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/orders"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Orders />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/invoices"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Invoices />
+                    <Footer />
+                  </div>
+                }
+              />
+              <Route
+                path="/auth"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <Auth />
+                    <Footer />
+                  </div>
+                }
+              />
+
+              {/* Dashboard routes (protected) */}
+              <Route path="/dashboard" element={<DashboardGuard />}>
+                <Route index element={<Overview />} />
+                <Route path="admin" element={<AdminDashboard />} />
+                <Route path="analytics" element={<Analytics />} />
+                <Route path="order-history" element={<OrderHistory />} />
+                <Route path="inventory" element={<InventoryManagement />} />
+                <Route path="products" element={<ProductCatalog />} />
+                <Route path="users" element={<UserManagement />} />
+                <Route path="user-management" element={<NewUserManagementPage />} />
+                <Route path="statistics" element={<StatisticsManagementPage />} />
+                <Route path="testimonials" element={<TestimonialsManagementPage />} />
+                <Route path="blog" element={<BlogManagement />} />
+                <Route path="orders" element={<EnhancedOrderManagement />} />
+                <Route path="loyalty" element={<FranchiseLoyaltyPage />} />
+                <Route path="loyalty-management" element={<LoyaltyManagement />} />
+                <Route path="messages" element={<EnhancedMessages />} />
+                <Route path="forms" element={<Forms />} />
+                <Route path="invoices" element={<InvoiceManagement />} />
+                <Route path="franchise" element={<FranchiseManagement />} />
+                <Route path="security" element={<SecurityDashboard />} />
+              </Route>
+
+              {/* Catch-all (wrap with layout for consistent UX) */}
+              <Route
+                path="*"
+                element={
+                  <div className="min-h-screen bg-background flex flex-col">
+                    <Navbar />
+                    <NotFound />
+                    <Footer />
+                  </div>
+                }
+              />
+            </Routes>
+
+            {/* Vercel RUM */}
+            <SpeedInsights />
+          </BrowserRouter>
+        </HelmetProvider>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>

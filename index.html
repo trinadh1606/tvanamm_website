@@ -5,41 +5,48 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
 
-  <!-- Primary Meta -->
-  <title>T VANAMM | Profitable Tea Franchise & High ROI Startup</title>
-  <meta name="description" content="Launch T VANAMM's profitable tea franchise in Telangana & AP. Low investment, high ROI startup with premium chai cafes & full support." />
-  <meta name="keywords" content="tea franchise, chai franchise, tea shop franchise, tea stall franchise, tea cafe franchise, chai cafe franchise, tea outlet franchise, tea store franchise, tea coffee franchise, TVanamm franchise cost, best profitable tea franchise, startup business ideas, low investment, high ROI" />
+  <!-- Primary Meta (focus keyword first) -->
+  <title>Tea Franchise in India | T VANAMM® Profitable Chai Franchise (Low Investment, High ROI)</title>
+  <meta name="description" content="Open a profitable tea franchise with T VANAMM® in Telangana & Andhra Pradesh. Low investment chai franchise formats, training, supply chain & marketing support. Apply today." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <!-- Meta keywords are mostly ignored by Google but kept for minor engines; primary term first -->
+  <meta name="keywords" content="tea franchise, chai franchise, tea franchise in India, low investment tea franchise, best tea franchise, tea franchise cost India, chai franchise India, tea shop franchise, tea cafe franchise, chai cafe franchise, tea franchise Hyderabad, tea franchise Telangana, tea franchise Andhra Pradesh, franchise tea business, Tea Time franchise alternative, Chai Time franchise alternative, Chai Duniya franchise alternative, Chai Sutta Bar alternative, MBA Chai Wala alternative, chai franchise under 5 lakhs, chai business franchise" />
   <meta name="author" content="T VANAMM" />
-  <meta name="robots" content="index, follow" />
 
   <!-- Social -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="T VANAMM | Profitable Tea Franchise" />
-  <meta property="og:description" content="Low investment, high ROI tea franchise in Telangana & AP." />
+  <meta property="og:title" content="Tea Franchise in India | T VANAMM® Profitable Chai Franchise" />
+  <meta property="og:description" content="Low investment, high ROI tea & chai franchise. Training, setup, supply chain & marketing support across Telangana & AP." />
   <meta property="og:image" content="https://tvanamm.com/tea-og-image.webp" />
   <meta property="og:url" content="https://tvanamm.com/" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#008037" />
+  <meta name="format-detection" content="telephone=yes" />
 
-  <!-- Geo & Mobile -->
+  <!-- Geo -->
   <meta name="geo.region" content="IN-TG" />
   <meta name="geo.placename" content="Hyderabad, Telangana, Andhra Pradesh" />
   <meta name="geo.position" content="17.4875;78.4095" />
   <meta name="ICBM" content="17.4875, 78.4095" />
-  <meta name="theme-color" content="#008037" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="format-detection" content="telephone=yes" />
 
-  <!-- Performance hints -->
+  <!-- Performance / Networking -->
+  <meta http-equiv="x-dns-prefetch-control" content="on" />
   <link rel="dns-prefetch" href="//fonts.googleapis.com" />
   <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="//xvojnnbjnleakecogqnd.supabase.co" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://xvojnnbjnleakecogqnd.supabase.co" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" />
-  <link rel="preload" href="/hero-tea.webp" as="image" />
+  <!-- LCP image preload (make sure /public/hero-tea.webp exists) -->
+  <link rel="preload" href="/hero-tea.webp" as="image" imagesrcset="/hero-tea.webp 1200w, /hero-tea@2x.webp 2400w" imagesizes="100vw" />
 
-  <!-- DO NOT set a global canonical/hreflang here (will be page-specific via SSR/prerender) -->
+  <!-- Prefetch likely next pages -->
+  <link rel="prefetch" href="/franchise" as="document" />
+  <link rel="prefetch" href="/contact" as="document" />
+  <link rel="prefetch" href="/order" as="document" />
+
+  <!-- No global canonical/hreflang here (set per-route via Helmet/prerender) -->
 
   <!-- Critical CSS -->
   <style>
@@ -53,12 +60,17 @@
     .btn.outline{background:#fff;color:#008037;border:1px solid #008037}
     footer{background:#f7f7f7;padding:20px;text-align:center;font-size:15px}
     .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:768px){.grid-2{grid-template-columns:1fr}}
+    .faq dt{font-weight:600;margin-top:12px}
+    .faq dd{margin:6px 0 0 0}
   </style>
 
   <!-- Load Inter font non-blocking -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
 
-  <!-- JSON-LD: WebSite -->
+  <!-- JSON-LD: WebSite (sitelinks searchbox) -->
   <script type="application/ld+json">{
     "@context":"https://schema.org","@type":"WebSite",
     "name":"T VANAMM","url":"https://tvanamm.com/",
@@ -76,7 +88,8 @@
     "areaServed":["Hyderabad","Telangana","Andhra Pradesh"],
     "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"07:00","closes":"23:00"}],
     "priceRange":"₹₹",
-    "sameAs":["https://facebook.com/tvanamm","https://instagram.com/tvanamm","https://x.com/tvanamm"]
+    "sameAs":["https://facebook.com/tvanamm","https://instagram.com/tvanamm","https://x.com/tvanamm"],
+    "contactPoint":{"@type":"ContactPoint","telephone":"+91-9000008479","contactType":"customer service","areaServed":"IN"}
   }</script>
 
   <!-- Analytics (optional) -->
@@ -96,36 +109,71 @@
 </head>
 <body>
   <header class="visually-hidden">
-    <h1>Best Profitable Tea Franchise & Low Investment Startup – T VANAMM</h1>
+    <h1>Tea Franchise in India – Low Investment Chai Franchise with High ROI | T VANAMM</h1>
   </header>
 
   <!-- SEO FALLBACK: visible before JS so crawlers see content -->
   <main id="seo-fallback" role="main">
     <section class="hero" aria-label="T VANAMM Hero">
-      <img src="/hero-tea.webp" alt="" />
+      <img
+        src="/hero-tea.webp"
+        srcset="/hero-tea.webp 1200w, /hero-tea@2x.webp 2400w"
+        sizes="100vw"
+        width="2400" height="900"
+        loading="eager" decoding="async" fetchpriority="high"
+        alt="T VANAMM chai franchise hero image" />
       <div class="content">
-        <span class="btn outline" aria-hidden="true">Premium Indian Tea</span>
-        <h1>Savour the rich blend of Tvanamm in every sip</h1>
-        <p>Discover the finest quality tea sourced directly from the lush tea gardens of India.</p>
-        <a class="btn" href="/about">Explore Our Legacy</a>
-        <a class="btn outline" href="/franchise">Become a Partner</a>
+        <span class="btn outline" aria-hidden="true">Premium Indian Chai</span>
+        <h2 style="margin-top:8px">Open a Profitable Tea & Chai Franchise in Telangana & AP</h2>
+        <p>Standardized menu, strong supply chain and full training—built for quick setup and faster payback.</p>
+        <a class="btn" href="/franchise">Franchise Details</a>
+        <a class="btn outline" href="/contact">Apply / Contact</a>
+        <p style="margin-top:10px;font-size:14px">Compare formats & ROI vs popular brands like Tea Time, Chai Sutta Bar, MBA Chai Wala, Chai Time and Chai Duniya.</p>
       </div>
     </section>
+
     <section class="container">
-      <h2>Top Picks</h2>
-      <ul>
-        <li>High-margin menu with standardized recipes</li>
-        <li>Investment-friendly stall & café formats</li>
-        <li>Setup assistance, training & procurement</li>
-      </ul>
-      <p><strong>Next steps:</strong> <a href="/franchise">Franchise details</a> · <a href="/contact">Contact</a></p>
+      <h2>Why T VANAMM for Your Tea Franchise</h2>
+      <div class="grid grid-2">
+        <ul>
+          <li>Low investment stall & café formats with transparent costs</li>
+          <li>Centralized procurement & training for consistent taste</li>
+          <li>Menu engineered for high-margin chai & snacks</li>
+        </ul>
+        <ul>
+          <li>Location guidance across Hyderabad, Warangal, Vijayawada & Vizag</li>
+          <li>Launch marketing toolkit & ongoing support</li>
+          <li>Vendor onboarding and SOPs for day-one operations</li>
+        </ul>
+      </div>
+      <p><strong>Next steps:</strong> <a href="/franchise">See formats & investment</a> · <a href="/contact">Talk to our team</a></p>
+    </section>
+
+    <!-- Lightweight visible FAQ for rich results -->
+    <section class="container">
+      <h2>Tea Franchise FAQs</h2>
+      <dl class="faq">
+        <dt>What is the typical investment for a T VANAMM franchise?</dt>
+        <dd>Investment varies by stall vs café format. We share a detailed breakup (setup, branding, initial stock) on the <a href="/franchise">franchise page</a>.</dd>
+        <dt>What support do you provide?</dt>
+        <dd>Site selection tips, layout & setup guidance, staff training, supply chain, SOPs and launch marketing.</dd>
+        <dt>How fast can I go live?</dt>
+        <dd>After location finalization, many partners launch within 30–45 days depending on format and fit-out time.</dd>
+      </dl>
+    </section>
+
+    <!-- Keyword-supporting blurb (natural, not stuffed) -->
+    <section class="container" aria-label="Tea & Chai Franchise Keywords">
+      <p style="font-size:14px;opacity:.9">
+        Focus topics: <strong>tea franchise</strong>, <strong>chai franchise</strong>, tea franchise in India, low investment tea franchise, tea franchise cost India, tea shop & café franchise, Hyderabad tea franchise, Telangana & Andhra Pradesh franchise, alternatives to Tea Time, Chai Sutta Bar, MBA Chai Wala, Chai Time & Chai Duniya.
+      </p>
     </section>
   </main>
 
   <!-- React mounts here -->
   <div id="root"></div>
 
-  <!-- Load your app FROM SOURCE (Vite expects this) -->
+  <!-- Load your app FROM SOURCE (Vite expects this). Vite will swap to hashed assets on build. -->
   <script type="module" src="/src/main.tsx"></script>
 
   <!-- Remove fallback after hydration -->
@@ -142,11 +190,22 @@
       Kukatpally, Hyderabad, Telangana – 500072<br />
       Phone: <a href="tel:+919000008479">+91-90000 08479</a><br />
       Email: <a href="mailto:info@tvanamm.com">info@tvanamm.com</a><br />
-      <a href="/contact">Contact us for genuine information</a>
+      <a href="/contact">THe Website is still in building stage Contact us for genuine information</a>
     </address>
   </footer>
 
   <noscript>Your browser doesn’t support JavaScript or it’s disabled. This page shows essential information even without JS.</noscript>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+
+  <!-- JSON-LD: FAQ (matches visible FAQ above) -->
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"What is the typical investment for a T VANAMM franchise?","acceptedAnswer":{"@type":"Answer","text":"Investment varies by stall vs café format. We share a detailed breakup (setup, branding, initial stock) on the franchise page."}},
+      {"@type":"Question","name":"What support do you provide?","acceptedAnswer":{"@type":"Answer","text":"Site selection tips, layout & setup guidance, staff training, supply chain, SOPs and launch marketing."}},
+      {"@type":"Question","name":"How fast can I go live?","acceptedAnswer":{"@type":"Answer","text":"After location finalization, many partners launch within 30–45 days depending on format and fit-out time."}}
+    ]
+  }</script>
 </body>
 </html>
