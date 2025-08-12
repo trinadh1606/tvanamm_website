@@ -397,7 +397,7 @@ export default function EnhancedLoyaltyGiftManagement() {
               <Input
                 value={formData.image_url}
                 onChange={(e) => setFormData(prev => ({ ...prev, image_url: e.target.value }))}
-                placeholder="https://example.com/image.jpg"
+                placeholder="https://example.com/image.webp"
               />
             </div>
 

@@ -9,31 +9,31 @@ const featuredItems = [
     id: '1',
     name: 'Premium Green Tea',
     description: 'Fresh leaves handpicked.',
-    image: '/images/green-tea.jpg',
+    image: '/images/green-tea.webp',
   },
     {
     id: '2',
     name: 'Premium Green Tea',
     description: 'Fresh leaves handpicked from the Himalayas.',
-    image: '/images/green-tea.jpg',
+    image: '/images/green-tea.webp',
   },
   {
     id: '3',
     name: 'Herbal Infusion',
     description: 'A soothing blend of chamomile and mint.',
-    image: '/images/herbal-infusion.jpg',
+    image: '/images/herbal-infusion.webp',
   },
   {
     id: '4',
     name: 'Earl Grey Delight',
     description: 'Classic black tea with bergamot aroma.',
-    image: '/images/earl-grey.jpg',
+    image: '/images/earl-grey.webp',
   },
   {
     id: '5',
     name: 'Fruit Punch Soda',
     description: 'Refreshing mix of berries and citrus.',
-    image: '/images/fruit-punch.jpg',
+    image: '/images/fruit-punch.webp',
   },
   // Add more items as needed
 ];

@@ -7,7 +7,7 @@ import { Download, CheckCircle } from 'lucide-react';
 import { useCreateLead } from '@/hooks/useLeads';
 import { sanitizeFormData, validateInput, isValidEmail, isValidPhone, rateLimitTracker } from '@/utils/security';
 import { useToast } from '@/hooks/use-toast';
-import masterCatalogueImage from '@/assets/master-catalogue-2025.jpg';
+import masterCatalogueImage from '@/assets/master-catalogue-2025.webp';
 
 const MasterCatalogueSection = () => {
   const [formData, setFormData] = useState({

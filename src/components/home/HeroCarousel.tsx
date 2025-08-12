@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import heroGarden from '@/assets/hero-tea-garden-1.jpg';
-import heroPicking from '@/assets/hero-tea-picking.jpg';
-import heroCup from '@/assets/hero-tea-cup.jpg';
+import heroGarden from '@/assets/hero-tea-garden-1.webp';
+import heroPicking from '@/assets/hero-tea-picking.webp';
+import heroCup from '@/assets/hero-tea-cup.webp';
 
 const slides = [
   {

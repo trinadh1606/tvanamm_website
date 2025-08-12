@@ -8,7 +8,7 @@ import { X, Download } from 'lucide-react';
 import { useCreateLead } from '@/hooks/useLeads';
 import { sanitizeFormData, validateInput, isValidEmail, rateLimitTracker } from '@/utils/security';
 import { useToast } from '@/hooks/use-toast';
-import masterCatalogueImage from '@/assets/master-catalogue-2025.jpg';
+import masterCatalogueImage from '@/assets/master-catalogue-2025.webp';
 
 const LeadCapturePopup = () => {
   const [isOpen, setIsOpen] = useState(false);

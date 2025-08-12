@@ -16,9 +16,9 @@ import TestimonialsSection from '@/components/home/TestimonialsSection';
 import StatisticsSection from '@/components/home/StatisticsSection';
 import InteractiveMap from '@/components/ui/interactive-map';
 import FranchiseInfoSection from '@/components/home/FranchiseInfoSection';
-import heroTeaGarden from '@/assets/hero-tea-garden-1.jpg';
-import heroTeaPicking from '@/assets/hero-tea-picking.jpg';
-import heroTeaCup from '@/assets/hero-tea-cup.jpg';
+import heroTeaGarden from '@/assets/hero-tea-garden-1.webp';
+import heroTeaPicking from '@/assets/hero-tea-picking.webp';
+import heroTeaCup from '@/assets/hero-tea-cup.webp';
 const Franchise = () => {
   const [formData, setFormData] = useState({
     contactPerson: '',

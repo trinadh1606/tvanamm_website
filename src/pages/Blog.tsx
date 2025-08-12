@@ -129,7 +129,7 @@ const Blog = () => {
                   <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-smooth">
                     <div className="aspect-video relative">
                       <img 
-                        src={article.image_url || '/src/assets/hero-tea-cup.jpg'} 
+                        src={article.image_url || '/src/assets/hero-tea-cup.webp'} 
                         alt={article.title}
                         className="w-full h-full object-cover"
                       />
@@ -179,7 +179,7 @@ const Blog = () => {
                     <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-smooth">
                       <div className="aspect-video relative">
                        <img 
-                          src={article.image_url || '/src/assets/hero-tea-cup.jpg'} 
+                          src={article.image_url || '/src/assets/hero-tea-cup.webp'} 
                           alt={article.title}
                           className="w-full h-full object-cover"
                         />
