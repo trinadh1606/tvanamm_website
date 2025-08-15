@@ -1,5 +1,10 @@
 {
   "rewrites": [
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/favicon.ico", "destination": "/favicon.ico" },
+    { "source": "/assets/(.*)", "destination": "/assets/:1" },
+
     {
       "source": "/(.*)",
       "has": [
@@ -11,14 +16,12 @@
       ],
       "destination": "https://service.prerender.io/https://tvanamm.com/:path*?prerenderToken=8S7qE3sySwmostB8DLZJ"
     },
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
+
+    { "source": "/(.*)", "destination": "/" }
   ],
   "headers": [
     {
-      "source": "/:path*\\.(js|css|png|jpg|jpeg|webp|svg|ico|woff|woff2)",
+      "source": "/assets/:path*",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
@@ -28,8 +31,7 @@
       "headers": [
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     }
   ]
