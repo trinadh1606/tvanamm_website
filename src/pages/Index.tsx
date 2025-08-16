@@ -1,27 +1,24 @@
-// src/pages/Index.tsx
 import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 // Keep Hero eager (drives LCP)
 import HeroCarousel from "@/components/home/HeroCarousel";
 
-// Lazy-load non-critical sections to trim initial JS
+// Lazy-load everything else to trim initial JS
 const TopPicksSection        = lazy(() => import("@/components/home/TopPicksSection"));
 const MasterCatalogueSection = lazy(() => import("@/components/home/MasterCatalogueSection"));
 const TestimonialsSection    = lazy(() => import("@/components/home/TestimonialsSection"));
 const StatisticsSection      = lazy(() => import("@/components/home/StatisticsSection"));
 const FranchiseInfoSection   = lazy(() => import("@/components/home/FranchiseInfoSection"));
 const MSMESection            = lazy(() => import("@/components/home/MSMESection"));
+const LeadCapturePopup       = lazy(() => import("@/components/home/LeadCapturePopup"));
 
-// 👉 Popup should NOT be delayed: import eagerly (no lazy)
-import LeadCapturePopup from "@/components/home/LeadCapturePopup";
-
-// LCP image for the first hero slide (make sure this matches your first slide)
+// LCP image for the first hero slide
 import heroLcp from "@/assets/hero-tea-garden-1.webp";
 
 const SITE = "https://tvanamm.com";
 
-// In-view helper (renders children only when near viewport)
+// In-view helper
 function InView({
   children,
   rootMargin = "250px",
@@ -37,8 +34,8 @@ function InView({
     const el = ref.current;
     if (!el || visible) return;
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
+      ([e]) => {
+        if (e.isIntersecting) {
           setVisible(true);
           io.disconnect();
         }
@@ -52,7 +49,7 @@ function InView({
 }
 
 const Index: React.FC = () => {
-  // Visible mini-FAQ to back the FAQPage JSON-LD
+  // Small, visible FAQ content to match JSON-LD
   const faqs = [
     {
       q: "Is T VANAMM a low investment tea franchise?",
@@ -77,14 +74,15 @@ const Index: React.FC = () => {
           name="description"
           content="Start a profitable tea franchise with T VANAMM® in Hyderabad, Telangana & Andhra Pradesh. Low investment chai franchise formats, high ROI, training, supply chain & marketing support."
         />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-        {/* High-intent keywords (helps minor engines and on-page tools) */}
+        <meta
+          name="robots"
+          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
+        {/* Optional: meta keywords help minor engines */}
         <meta
           name="keywords"
-          content="tea franchise, chai franchise, tea franchise in India, low investment tea franchise, high ROI franchise, best tea franchise, tea franchise cost India, tea shop franchise, tea cafe franchise, chai cafe franchise, tea franchise Hyderabad, tea franchise Telangana, tea franchise Andhra Pradesh, start chai business, profitable tea franchise, chai franchise under 5 lakhs, Tea Time franchise alternative, Chai Time franchise alternative, Chai Duniya alternative, Chai Sutta Bar alternative, MBA Chai Wala alternative"
+          content="tea franchise, chai franchise, tea franchise in India, low investment tea franchise, high ROI franchise, tea shop franchise, tea cafe franchise, chai cafe franchise, tea franchise Hyderabad, tea franchise Telangana, tea franchise Andhra Pradesh, tea franchise cost, start chai business, best tea franchise, profitable tea franchise"
         />
-
         <link rel="canonical" href={`${SITE}/`} />
 
         {/* Prefetch likely next steps */}
@@ -226,8 +224,7 @@ const Index: React.FC = () => {
             Explore <strong>tea franchise</strong> and <strong>chai franchise</strong> opportunities in{" "}
             <strong>Hyderabad</strong>, <strong>Telangana</strong> & <strong>Andhra Pradesh</strong> with
             <span> T VANAMM</span> — a <strong>low investment</strong>, <strong>high ROI</strong> model with training,
-            supply chain and marketing support. Compare with <strong>Tea Time</strong>, <strong>Chai Time</strong>,{" "}
-            <strong>Chai Duniya</strong>, <strong>Chai Sutta Bar</strong> and <strong>MBA Chai Wala</strong> to choose the{" "}
+            supply chain and marketing support. Compare us with popular brands to choose the{" "}
             <strong>best tea franchise</strong> for your goals.
           </p>
         </section>
@@ -303,8 +300,14 @@ const Index: React.FC = () => {
           </div>
         </section>
 
-        {/* Popup: EAGER (no delay) */}
-        <LeadCapturePopup />
+        {/* Lead Capture (lazy, usually last) */}
+        <InView rootMargin="0px" placeholderHeight={0}>
+          {(visible) => (
+            <Suspense fallback={null}>
+              {visible ? <LeadCapturePopup /> : null}
+            </Suspense>
+          )}
+        </InView>
       </div>
     </>
   );
