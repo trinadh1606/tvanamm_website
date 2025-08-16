@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Download } from 'lucide-react';
+import { X, Download } from 'lucide-react';
 import { useCreateLead } from '@/hooks/useLeads';
 import { sanitizeFormData, validateInput, isValidEmail, rateLimitTracker } from '@/utils/security';
 import { useToast } from '@/hooks/use-toast';
@@ -23,14 +23,14 @@ const LeadCapturePopup = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Show popup after 1 second if not shown before in this session
-    const hasShownPopup = typeof window !== 'undefined' && sessionStorage.getItem('leadPopupShown');
-
+    // Show popup after 5 seconds if not shown before in this session
+    const hasShownPopup = sessionStorage.getItem('leadPopupShown');
+    
     if (!hasShownPopup) {
       const timer = setTimeout(() => {
         setIsOpen(true);
         sessionStorage.setItem('leadPopupShown', 'true');
-      }, 1000); // <-- reduced from 5000ms to 1000ms
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
@@ -38,7 +38,7 @@ const LeadCapturePopup = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     // Client-side rate limiting
     if (!rateLimitTracker.canAttempt('lead-capture', 3, 300000)) { // 3 attempts per 5 minutes
       toast({
@@ -48,7 +48,7 @@ const LeadCapturePopup = () => {
       });
       return;
     }
-
+    
     // Validate inputs
     const nameValidation = validateInput(formData.name, 2, 100);
     if (!nameValidation.isValid) {
@@ -59,7 +59,7 @@ const LeadCapturePopup = () => {
       });
       return;
     }
-
+    
     if (!isValidEmail(formData.email)) {
       toast({
         title: "Invalid Email",
@@ -68,23 +68,23 @@ const LeadCapturePopup = () => {
       });
       return;
     }
-
+    
     // Sanitize form data
     const sanitizedData = sanitizeFormData(formData);
-
+    
     createLeadMutation.mutate({
       ...sanitizedData,
       source: 'catalogue_download'
     });
-
-    // Trigger PDF download
+    
+    // Simulate PDF download
     const link = document.createElement('a');
     link.href = '/Uploads/T VANAMM MASTER CATALOUGE.pdf';
     link.download = 'T-VANAMM-Master-Catalogue-2025.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
+    
     setIsOpen(false);
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
@@ -104,8 +104,9 @@ const LeadCapturePopup = () => {
             Download Our Master Catalogue 2025
           </DialogTitle>
         </DialogHeader>
-
+        
         <div>
+          
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="name">Full Name *</Label>
@@ -118,7 +119,7 @@ const LeadCapturePopup = () => {
                 placeholder="Enter your full name"
               />
             </div>
-
+            
             <div>
               <Label htmlFor="email">Email Address *</Label>
               <Input
@@ -131,7 +132,7 @@ const LeadCapturePopup = () => {
                 placeholder="Enter your email"
               />
             </div>
-
+            
             <div>
               <Label htmlFor="phone">Phone Number *</Label>
               <Input
@@ -143,7 +144,7 @@ const LeadCapturePopup = () => {
                 placeholder="Enter your phone number"
               />
             </div>
-
+            
             <div>
               <Label htmlFor="message">Message (Optional)</Label>
               <Textarea
@@ -155,12 +156,12 @@ const LeadCapturePopup = () => {
                 rows={3}
               />
             </div>
-
+            
             <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-6">
               <div className="w-full sm:w-32 flex-shrink-0">
-                <img
-                  src={masterCatalogueImage}
-                  alt="Master Catalogue 2025"
+                <img 
+                  src={masterCatalogueImage} 
+                  alt="Master Catalogue 2025" 
                   className="w-full h-32 sm:h-40 object-cover rounded-lg shadow-lg mx-auto"
                 />
               </div>
@@ -179,19 +180,19 @@ const LeadCapturePopup = () => {
                 </ul>
               </div>
             </div>
-
+            
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
-              <Button
-                type="submit"
+              <Button 
+                type="submit" 
                 className="flex-1 w-full sm:w-auto"
                 disabled={createLeadMutation.isPending}
               >
                 <Download className="w-4 h-4 mr-2" />
                 {createLeadMutation.isPending ? 'Downloading...' : 'Download Now'}
               </Button>
-              <Button
-                type="button"
-                variant="outline"
+              <Button 
+                type="button" 
+                variant="outline" 
                 className="w-full sm:w-auto"
                 onClick={() => setIsOpen(false)}
               >
@@ -199,7 +200,7 @@ const LeadCapturePopup = () => {
               </Button>
             </div>
           </form>
-
+          
           <p className="text-xs text-muted-foreground mt-4 text-center">
             We respect your privacy. Unsubscribe anytime.
           </p>
