@@ -9,27 +9,19 @@
   <title>Tea Franchise in India | T VANAMM® Profitable Chai Franchise (Low Investment, High ROI)</title>
   <meta name="description" content="Open a profitable tea franchise with T VANAMM® in Telangana & Andhra Pradesh. Low investment chai franchise formats, training, supply chain & marketing support. Apply today." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-  <!-- (Mostly ignored by Google, kept for minor engines; primary terms first) -->
-  <meta name="keywords" content="tea franchise, chai franchise, tea franchise in India, low investment tea franchise, high ROI franchise, best tea franchise, tea franchise cost India, chai franchise India, tea shop franchise, tea cafe franchise, chai cafe franchise, tea franchise Hyderabad, tea franchise Telangana, tea franchise Andhra Pradesh, franchise tea business, chai franchise under 5 lakhs, Tea Time alternative, Chai Sutta Bar alternative, MBA Chai Wala alternative, Chai Time alternative, Chai Duniya alternative" />
+  <!-- Meta keywords are mostly ignored by Google but kept for minor engines; primary term first -->
+  <meta name="keywords" content="tea franchise, chai franchise, tea franchise in India, low investment tea franchise, best tea franchise, tea franchise cost India, chai franchise India, tea shop franchise, tea cafe franchise, chai cafe franchise, tea franchise Hyderabad, tea franchise Telangana, tea franchise Andhra Pradesh, franchise tea business, Tea Time franchise alternative, Chai Time franchise alternative, Chai Duniya franchise alternative, Chai Sutta Bar alternative, MBA Chai Wala alternative, chai franchise under 5 lakhs, chai business franchise" />
   <meta name="author" content="T VANAMM" />
 
-  <!-- Social / Open Graph -->
+  <!-- Social -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Tea Franchise in India | T VANAMM® Profitable Chai Franchise" />
   <meta property="og:description" content="Low investment, high ROI tea & chai franchise. Training, setup, supply chain & marketing support across Telangana & AP." />
   <meta property="og:image" content="https://tvanamm.com/tea-og-image.webp" />
   <meta property="og:url" content="https://tvanamm.com/" />
-  <meta property="og:site_name" content="T VANAMM" />
-  <meta property="og:locale" content="en_IN" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@tvanamm" />
-
-  <!-- PWA / Theming -->
   <meta name="theme-color" content="#008037" />
   <meta name="format-detection" content="telephone=yes" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Geo -->
   <meta name="geo.region" content="IN-TG" />
@@ -45,18 +37,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://xvojnnbjnleakecogqnd.supabase.co" crossorigin />
-
-  <!-- Fonts: preload + non-blocking load -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-
-  <!-- LCP image preload (ensure this exists in /public) -->
+  <!-- LCP image preload (make sure /public/hero-tea.webp exists) -->
   <link rel="preload" href="/hero-tea.webp" as="image" imagesrcset="/hero-tea.webp 1200w, /hero-tea@2x.webp 2400w" imagesizes="100vw" />
 
   <!-- Prefetch likely next pages -->
   <link rel="prefetch" href="/franchise" as="document" />
   <link rel="prefetch" href="/contact" as="document" />
   <link rel="prefetch" href="/order" as="document" />
+
+  <!-- No global canonical/hreflang here (set per-route via Helmet/prerender) -->
 
   <!-- Critical CSS -->
   <style>
@@ -76,6 +66,9 @@
     .faq dt{font-weight:600;margin-top:12px}
     .faq dd{margin:6px 0 0 0}
   </style>
+
+  <!-- Load Inter font non-blocking -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
 
   <!-- JSON-LD: WebSite (sitelinks searchbox) -->
   <script type="application/ld+json">{
@@ -105,7 +98,7 @@
   </header>
 
   <!-- SEO FALLBACK: visible before JS so crawlers see content -->
-  <main id="seo-fallback" role="main" aria-label="SEO Fallback Content">
+  <main id="seo-fallback" role="main">
     <section class="hero" aria-label="T VANAMM Hero">
       <img
         src="/hero-tea.webp"
@@ -142,7 +135,7 @@
     </section>
 
     <!-- Lightweight visible FAQ for rich results -->
-    <section class="container" aria-label="Tea Franchise FAQs">
+    <section class="container">
       <h2>Tea Franchise FAQs</h2>
       <dl class="faq">
         <dt>What is the typical investment for a T VANAMM franchise?</dt>
@@ -157,7 +150,7 @@
     <!-- Keyword-supporting blurb (natural, not stuffed) -->
     <section class="container" aria-label="Tea & Chai Franchise Keywords">
       <p style="font-size:14px;opacity:.9">
-        Focus topics: <strong>tea franchise</strong>, <strong>chai franchise</strong>, tea franchise in India, low investment tea franchise, tea franchise cost in India, tea shop & café franchise, Hyderabad tea franchise, Telangana & Andhra Pradesh franchise, alternatives to Tea Time, Chai Sutta Bar, MBA Chai Wala, Chai Time & Chai Duniya.
+        Focus topics: <strong>tea franchise</strong>, <strong>chai franchise</strong>, tea franchise in India, low investment tea franchise, tea franchise cost India, tea shop & café franchise, Hyderabad tea franchise, Telangana & Andhra Pradesh franchise, alternatives to Tea Time, Chai Sutta Bar, MBA Chai Wala, Chai Time & Chai Duniya.
       </p>
     </section>
   </main>
@@ -165,31 +158,15 @@
   <!-- React mounts here -->
   <div id="root"></div>
 
-  <!-- Load your app FROM SOURCE (Vite dev) / Vite swaps to hashed assets on build -->
+  <!-- Load your app FROM SOURCE (Vite expects this). Vite will swap to hashed assets on build. -->
   <script type="module" src="/src/main.tsx"></script>
 
-  <!-- SAFER: Remove fallback only after React actually mounts -->
+  <!-- Remove fallback after hydration -->
   <script>
-    (function(){
-      function tryRemoveFallback(){
-        var root = document.getElementById('root');
-        var el   = document.getElementById('seo-fallback');
-        if (root && root.childElementCount > 0 && el && el.parentNode) {
-          el.parentNode.removeChild(el);
-          return true;
-        }
-        return false;
-      }
-      window.addEventListener('load', function(){
-        var attempts = 0;
-        var iv = setInterval(function(){
-          attempts++;
-          if (tryRemoveFallback() || attempts > 40) { // ~2s total
-            clearInterval(iv);
-          }
-        }, 50);
-      });
-    })();
+    window.addEventListener('load',function(){
+      var el=document.getElementById('seo-fallback');
+      if(el&&el.parentNode) el.parentNode.removeChild(el);
+    });
   </script>
 
   <footer>
@@ -203,13 +180,13 @@
   </footer>
 
   <noscript>Your browser doesn’t support JavaScript or it’s disabled. This page shows essential information even without JS.</noscript>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" alt="facebook pixel" /></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
 
   <!-- Defer GA & Facebook Pixel until first interaction / idle -->
   <script>
   (function(){
     function loadAnalytics(){
-      // Google Analytics (gtag)
+      // Google Analytics
       var ga=document.createElement('script');
       ga.async=1;
       ga.src='https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID';
@@ -219,7 +196,9 @@
       function gtag(){dataLayer.push(arguments);}
       window.gtag = gtag;
       gtag('js', new Date());
+      // prevent immediate auto page_view to avoid double counting on SPAs
       gtag('config','YOUR_GA_ID',{ send_page_view:false });
+      // manually send initial page_view
       gtag('event','page_view', { page_path: location.pathname + location.search });
 
       // Facebook Pixel
