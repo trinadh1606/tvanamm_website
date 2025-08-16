@@ -3,20 +3,21 @@
     { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/favicon.ico", "destination": "/favicon.ico" },
+    { "source": "/assets/(.*)", "destination": "/assets/:1" },
 
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "header",
           "key": "user-agent",
-          "value": ".*(googlebot|bingbot|baiduspider|yandex|duckduckbot|slurp|semrush|ahrefs|facebookexternalhit|twitterbot).*"
+          "value": "(?i).*?(googlebot|bingbot|baiduspider|yandex|duckduckbot|slurp|semrush|ahrefs|facebookexternalhit|twitterbot).*"
         }
       ],
       "destination": "https://service.prerender.io/https://tvanamm.com/:path*?prerenderToken=8S7qE3sySwmostB8DLZJ"
     },
 
-    { "source": "/:path*", "destination": "/" }
+    { "source": "/(.*)", "destination": "/" }
   ],
   "headers": [
     {
@@ -26,7 +27,7 @@
       ]
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
