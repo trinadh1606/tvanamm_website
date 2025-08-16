@@ -1,30 +1,27 @@
-# tvanamm.com robots.txt (cleaned)
+# tvanamm.com robots.txt
 
 User-agent: *
-# Allow everything by default
 Allow: /
 
-# Block private/admin areas
+# Private areas
 Disallow: /dashboard/
 Disallow: /admin/
 
-# IMPORTANT: Let Googlebot fetch APIs needed for rendering React.
-# If you truly want /api/ hidden, you must serve SSR/pre-rendered HTML.
-# Disallow: /api/
+# Allow helpful query params (search & pagination)…
+Allow: /*?s=*
+Allow: /*?page=*
 
-# Block any URL with query parameters to avoid duplicate crawl (optional)
-# Remove this if you have querystring pages that should be indexed.
-Disallow: /*?*
+# …but block tracking/noise params
+Disallow: /*?*utm_*
+Disallow: /*?*gclid=*
+Disallow: /*?*fbclid=*
 
-# Make sure static assets are crawlable (redundant but explicit)
-Allow: /static/
+# Static assets (usually allowed by default; kept for clarity)
 Allow: /assets/
 Allow: /images/
 Allow: /css/
 Allow: /js/
+Allow: /static/
 
 # Sitemap
 Sitemap: https://tvanamm.com/sitemap.xml
-
-# Crawl-delay is ignored by Google (kept here only for Bing/Yandex)
-# Crawl-delay: 1
