@@ -13,7 +13,7 @@ const StatisticsSection      = lazy(() => import("@/components/home/StatisticsSe
 const FranchiseInfoSection   = lazy(() => import("@/components/home/FranchiseInfoSection"));
 const MSMESection            = lazy(() => import("@/components/home/MSMESection"));
 
-// 👉 Popup must NOT be delayed: import eagerly (no lazy)
+// 👉 Popup should NOT be delayed: import eagerly (no lazy)
 import LeadCapturePopup from "@/components/home/LeadCapturePopup";
 
 // LCP image for the first hero slide (make sure this matches your first slide)
@@ -21,7 +21,7 @@ import heroLcp from "@/assets/hero-tea-garden-1.webp";
 
 const SITE = "https://tvanamm.com";
 
-/** In-view helper (renders children only when near viewport) */
+// In-view helper (renders children only when near viewport)
 function InView({
   children,
   rootMargin = "250px",
@@ -86,14 +86,10 @@ const Index: React.FC = () => {
         />
 
         <link rel="canonical" href={`${SITE}/`} />
-        {/* Hreflang */}
-        <link rel="alternate" hrefLang="en-IN" href={`${SITE}/`} />
-        <link rel="alternate" hrefLang="x-default" href={`${SITE}/`} />
 
         {/* Prefetch likely next steps */}
         <link rel="prefetch" href="/franchise" as="document" />
         <link rel="prefetch" href="/contact" as="document" />
-        <link rel="prefetch" href="/order" as="document" />
 
         {/* Social */}
         <meta property="og:type" content="website" />
@@ -104,8 +100,6 @@ const Index: React.FC = () => {
         />
         <meta property="og:url" content={`${SITE}/`} />
         <meta property="og:image" content={`${SITE}/tea-og-image.webp`} />
-        <meta property="og:site_name" content="T VANAMM" />
-        <meta property="og:locale" content="en_IN" />
         <meta name="twitter:card" content="summary_large_image" />
 
         {/* Networking / performance hints */}
@@ -117,13 +111,8 @@ const Index: React.FC = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://xvojnnbjnleakecogqnd.supabase.co" crossOrigin="" />
 
-        {/* LCP image preload (matches first slide) */}
-        <link
-          rel="preload"
-          as="image"
-          href={heroLcp}
-          // If you know exact responsive sources, you can include imagesrcset/imagesizes
-        />
+        {/* LCP image preload */}
+        <link rel="preload" as="image" href={heroLcp} />
 
         {/* JSON-LD: WebSite with SearchAction */}
         <script type="application/ld+json">
@@ -231,7 +220,7 @@ const Index: React.FC = () => {
         {/* Hero (critical) */}
         <HeroCarousel />
 
-        {/* Subtle keyword-support paragraph near fold (natural language) */}
+        {/* Subtle keyword-support paragraph near fold */}
         <section className="mx-auto max-w-6xl px-4 py-6">
           <p className="text-sm text-muted-foreground">
             Explore <strong>tea franchise</strong> and <strong>chai franchise</strong> opportunities in{" "}
@@ -314,7 +303,7 @@ const Index: React.FC = () => {
           </div>
         </section>
 
-        {/* Popup: EAGER (no lazy import; internal component controls its own timing) */}
+        {/* Popup: EAGER (no delay) */}
         <LeadCapturePopup />
       </div>
     </>
