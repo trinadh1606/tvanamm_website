@@ -91,21 +91,6 @@
     "sameAs":["https://facebook.com/tvanamm","https://instagram.com/tvanamm","https://x.com/tvanamm"],
     "contactPoint":{"@type":"ContactPoint","telephone":"+91-9000008479","contactType":"customer service","areaServed":"IN"}
   }</script>
-
-  <!-- Analytics (optional) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
-  <script>
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date()); gtag('config','YOUR_GA_ID');
-  </script>
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
-    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','YOUR_PIXEL_ID'); fbq('track','PageView');
-  </script>
 </head>
 <body>
   <header class="visually-hidden">
@@ -190,12 +175,55 @@
       Kukatpally, Hyderabad, Telangana – 500072<br />
       Phone: <a href="tel:+919000008479">+91-90000 08479</a><br />
       Email: <a href="mailto:info@tvanamm.com">info@tvanamm.com</a><br />
-      <a href="/contact">THe Website is still in building stage Contact us for genuine information</a>
+      <a href="/contact">The website is still in building stage — contact us for genuine information</a>
     </address>
   </footer>
 
   <noscript>Your browser doesn’t support JavaScript or it’s disabled. This page shows essential information even without JS.</noscript>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" /></noscript>
+
+  <!-- Defer GA & Facebook Pixel until first interaction / idle -->
+  <script>
+  (function(){
+    function loadAnalytics(){
+      // Google Analytics
+      var ga=document.createElement('script');
+      ga.async=1;
+      ga.src='https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID';
+      document.head.appendChild(ga);
+
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      // prevent immediate auto page_view to avoid double counting on SPAs
+      gtag('config','YOUR_GA_ID',{ send_page_view:false });
+      // manually send initial page_view
+      gtag('event','page_view', { page_path: location.pathname + location.search });
+
+      // Facebook Pixel
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+      t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init','YOUR_PIXEL_ID'); fbq('track','PageView');
+    }
+    var fired=false;
+    function trigger(){
+      if(fired) return; fired=true;
+      if('requestIdleCallback' in window){ requestIdleCallback(loadAnalytics); }
+      else { setTimeout(loadAnalytics, 1200); }
+      window.removeEventListener('scroll', trigger);
+      window.removeEventListener('pointerdown', trigger);
+      window.removeEventListener('keydown', trigger);
+    }
+    window.addEventListener('scroll', trigger, { once:true, passive:true });
+    window.addEventListener('pointerdown', trigger, { once:true, passive:true });
+    window.addEventListener('keydown', trigger, { once:true, passive:true });
+  })();
+  </script>
 
   <!-- JSON-LD: FAQ (matches visible FAQ above) -->
   <script type="application/ld+json">{

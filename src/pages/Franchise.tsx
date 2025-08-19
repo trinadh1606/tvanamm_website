@@ -4,12 +4,11 @@ import {
   Store, TrendingUp, Users, Award, Shield, Headphones,
   Phone, Mail, MapPin, Download, CheckCircle, GraduationCap,
   Megaphone, Settings, Truck, BarChart3, Target, Briefcase,
-  Calendar, CheckCircle2, Trophy, DollarSign, Clock, Building2, Handshake
+  Calendar, Trophy, DollarSign, Clock, Building2, Handshake
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -266,33 +265,136 @@ const Franchise: React.FC = () => {
     <div className="min-h-screen bg-background">
       {/* Route-level SEO */}
       <Helmet>
-        <title>Tea Franchise Opportunities | Join T VANAMM Network</title>
+        {/* Primary SEO */}
+        <title>Tea Franchise & Master Franchise | Low Investment, High ROI – T VANAMM®</title>
         <meta
           name="description"
-          content="Start your own tea business with T VANAMM. Training, supply chain, marketing support & proven ROI. Choose City, State or Regional franchise models."
+          content="Join the T VANAMM® tea franchise network. City, State & Regional master franchise options with training, supply chain, marketing support and proven ROI. Apply for Hyderabad, Telangana & Andhra Pradesh."
         />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href={`${SITE}/franchise`} />
-        {/* OG / Twitter */}
+
+        {/* Expanded keywords */}
+        <meta
+          name="keywords"
+          content={[
+            "tea franchise",
+            "chai franchise",
+            "tea franchise in india",
+            "low investment tea franchise",
+            "high roi franchise",
+            "master franchise tea",
+            "city franchise tea",
+            "state franchise tea",
+            "regional franchise tea",
+            "tea franchise under 5 lakhs",
+            "tea franchise cost india",
+            "franchise opportunities 2025 india",
+            "tea franchise hyderabad",
+            "tea franchise telangana",
+            "tea franchise andhra pradesh",
+            "start tea business",
+            "tea shop franchise",
+            "tea cafe franchise",
+            "franchise training and support",
+            "franchise supply chain"
+          ].join(", ")}
+        />
+
+        {/* Prefetch likely next steps */}
+        <link rel="prefetch" href="/contact" as="document" />
+        <link rel="prefetch" href="/#application" as="document" />
+
+        {/* Open Graph / Twitter */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Tea Franchise Opportunities | T VANAMM" />
+        <meta property="og:site_name" content="T VANAMM" />
+        <meta property="og:title" content="Tea Franchise & Master Franchise | Low Investment, High ROI – T VANAMM®" />
         <meta
           property="og:description"
-          content="Premium tea & chai franchise with low investment and high returns across Telangana & Andhra Pradesh."
+          content="City, State & Regional franchise models with training, supply chain and marketing support. Apply now."
         />
         <meta property="og:url" content={`${SITE}/franchise`} />
         <meta property="og:image" content={`${SITE}/tea-og-image.webp`} />
+        <meta property="og:image:alt" content="T VANAMM tea & chai franchise" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Tea Franchise & Master Franchise | T VANAMM®" />
+        <meta
+          name="twitter:description"
+          content="Low investment, high ROI franchise models with end-to-end support."
+        />
+        <meta name="twitter:image" content={`${SITE}/tea-og-image.webp`} />
 
-        {/* JSON-LD: Product (franchise offering) */}
+        {/* JSON-LD: WebPage */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Product",
-            name: "T VANAMM Tea Franchise",
-            description: "Premium tea franchise opportunity with comprehensive support",
-            brand: "T VANAMM",
-            offers: { "@type": "Offer", availability: "https://schema.org/InStock" },
+            "@type": "WebPage",
+            name: "Tea Franchise Opportunities – T VANAMM",
             url: `${SITE}/franchise`,
+            description:
+              "Join the T VANAMM tea franchise network with City, State and Regional master franchise options.",
+          })}
+        </script>
+
+        {/* JSON-LD: OfferCatalog (City / State / Regional) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "OfferCatalog",
+            name: "T VANAMM Tea Franchise Models",
+            url: `${SITE}/franchise`,
+            itemListElement: [
+              {
+                "@type": "Offer",
+                name: "City Franchise",
+                url: `${SITE}/franchise#investment-options`,
+                priceSpecification: {
+                  "@type": "PriceSpecification",
+                  priceCurrency: "INR",
+                  minPrice: "500000",
+                  maxPrice: "800000"
+                },
+                itemOffered: {
+                  "@type": "Service",
+                  name: "City Tea Franchise",
+                  areaServed: ["Hyderabad", "Telangana", "Andhra Pradesh"]
+                },
+                availability: "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                name: "State Franchise",
+                url: `${SITE}/franchise#investment-options`,
+                priceSpecification: {
+                  "@type": "PriceSpecification",
+                  priceCurrency: "INR",
+                  minPrice: "1500000",
+                  maxPrice: "2500000"
+                },
+                itemOffered: {
+                  "@type": "Service",
+                  name: "State Master Franchise",
+                  areaServed: ["Telangana", "Andhra Pradesh"]
+                },
+                availability: "https://schema.org/InStock"
+              },
+              {
+                "@type": "Offer",
+                name: "Regional Franchise",
+                url: `${SITE}/franchise#investment-options`,
+                priceSpecification: {
+                  "@type": "PriceSpecification",
+                  priceCurrency: "INR",
+                  minPrice: "5000000"
+                },
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Regional Master Franchise",
+                  areaServed: ["South India"]
+                },
+                availability: "https://schema.org/InStock"
+              }
+            ]
           })}
         </script>
 
@@ -303,12 +405,12 @@ const Franchise: React.FC = () => {
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
-              { "@type": "ListItem", position: 2, name: "Franchise", item: `${SITE}/franchise` },
-            ],
+              { "@type": "ListItem", position: 2, name: "Franchise", item: `${SITE}/franchise` }
+            ]
           })}
         </script>
 
-        {/* JSON-LD: FAQ */}
+        {/* JSON-LD: FAQPage (aligns with page content) */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -320,8 +422,8 @@ const Franchise: React.FC = () => {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Investment varies by model. City: ₹5–8L, State: ₹15–25L, Regional: ₹50L+. Get the detailed breakup on this page.",
-                },
+                    "Investment varies by model. City: ₹5–8L, State: ₹15–25L, Regional: ₹50L+. Get the detailed breakup on this page."
+                }
               },
               {
                 "@type": "Question",
@@ -329,8 +431,8 @@ const Franchise: React.FC = () => {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "End-to-end support including site guidance, setup, staff training, supply chain, marketing and performance analytics.",
-                },
+                    "End-to-end support including site guidance, setup, staff training, supply chain, marketing and performance analytics."
+                }
               },
               {
                 "@type": "Question",
@@ -338,10 +440,10 @@ const Franchise: React.FC = () => {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Typical launch in 5–6 weeks after agreement, depending on fit-out and local approvals.",
-                },
-              },
-            ],
+                    "Typical launch in 5–6 weeks after agreement, depending on fit-out and local approvals."
+                }
+              }
+            ]
           })}
         </script>
       </Helmet>
@@ -541,34 +643,34 @@ const Franchise: React.FC = () => {
             </p>
           </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { step: "1", title: "Enquiry & Application", desc: "Submit application & initial discussion", icon: Briefcase, timeframe: "Day 1" },
-            { step: "2", title: "Evaluation", desc: "Territory analysis & approval", icon: Target, timeframe: "Week 1–2" },
-            { step: "3", title: "Agreement", desc: "Sign franchise agreement and finalize terms", icon: GraduationCap, timeframe: "Week 3–4" },
-            { step: "4", title: "Training", desc: "Comprehensive product training", icon: GraduationCap, timeframe: "Week 3–4" },
-            { step: "5", title: "Launch", desc: "Grand opening with marketing support", icon: Trophy, timeframe: "Week 5–6" },
-          ].map((p) => (
-            <Card key={p.step} className="p-6 bg-white hover:shadow-card text-center relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">
-                {p.step}
-              </div>
-              <div className="mt-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <p.icon className="w-8 h-8 text-primary" aria-hidden />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { step: "1", title: "Enquiry & Application", desc: "Submit application & initial discussion", icon: Briefcase, timeframe: "Day 1" },
+              { step: "2", title: "Evaluation", desc: "Territory analysis & approval", icon: Target, timeframe: "Week 1–2" },
+              { step: "3", title: "Agreement", desc: "Sign franchise agreement and finalize terms", icon: GraduationCap, timeframe: "Week 3–4" },
+              { step: "4", title: "Training", desc: "Comprehensive product training", icon: GraduationCap, timeframe: "Week 3–4" },
+              { step: "5", title: "Launch", desc: "Grand opening with marketing support", icon: Trophy, timeframe: "Week 5–6" },
+            ].map((p) => (
+              <Card key={p.step} className="p-6 bg-white hover:shadow-card text-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">
+                  {p.step}
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {p.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-3">{p.desc}</p>
-                <div className="inline-flex items-center px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-medium">
-                  <Clock className="w-3 h-3 mr-1" aria-hidden />
-                  {p.timeframe}
+                <div className="mt-4">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <p.icon className="w-8 h-8 text-primary" aria-hidden />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {p.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-3">{p.desc}</p>
+                  <div className="inline-flex items-center px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-medium">
+                    <Clock className="w-3 h-3 mr-1" aria-hidden />
+                    {p.timeframe}
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -617,7 +719,7 @@ const Franchise: React.FC = () => {
       </InView>
 
       {/* Investment Options */}
-      <section className="py-20 bg-gray-50" aria-labelledby="investment-heading">
+      <section className="py-20 bg-gray-50" aria-labelledby="investment-heading" id="investment-options">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 id="investment-heading" className="text-4xl font-bold text-foreground mb-6">
@@ -717,7 +819,7 @@ const Franchise: React.FC = () => {
                     onChange={handleInputChange}
                     placeholder="Enter your phone number"
                     inputMode="tel"
-                    pattern="^(?:\+?91[-\s]?)?[6-9]\d{9}$"
+                    pattern="^(?:\\+?91[-\\s]?)?[6-9]\\d{9}$"
                     title="Valid Indian mobile number, e.g. +91 9000000000 or 9000000000"
                     required
                   />
