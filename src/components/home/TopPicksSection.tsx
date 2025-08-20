@@ -3,39 +3,45 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
+// Import images directly
+import mintTea from '@/assets/minttea.webp';
+import blackTea from '@/assets/blacktea.webp';
+import hibiscusTea from '@/assets/3.png';
+import oolongTea from '@/assets/2.webp';
+import limeSoda from '@/assets/lime.webp';
+
 // Define a static list of featured items
 const featuredItems = [
   {
     id: '1',
     name: 'Premium Mint Tea',
     description: 'Fresh leaves handpicked.',
-    image: 'src/assets/minttea.webp',
+    image: mintTea,
   },
   {
     id: '2',
     name: 'Premium Black Tea',
     description: 'Classic black tea with bergamot aroma.',
-    image: 'src/assets/blacktea.webp',
+    image: blackTea,
   },
   {
     id: '3',
     name: 'Hibiscus Tea',
     description: 'A soothing blend of hibiscus.',
-    image: 'src/assets/3.png',
+    image: hibiscusTea,
   },
   {
     id: '4',
     name: 'Oolong Tea',
     description: 'Classic oolong tea with bergamot aroma.',
-    image: 'src/assets/2.webp',
+    image: oolongTea,
   },
   {
     id: '5',
     name: 'Fresh Lime Soda',
     description: 'Refreshing mix of citrus and soda.',
-    image: 'src/assets/lime.webp',
+    image: limeSoda,
   },
-  // Add more items as needed
 ];
 
 const TopPicksSection = () => {
