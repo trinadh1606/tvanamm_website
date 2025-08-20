@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Heart, Facebook, Instagram, Twitter } from 'lucide-react';
 import InteractiveMap from '@/components/ui/interactive-map';
 
 const Footer = () => {
@@ -10,15 +10,17 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img src="/Uploads/e4d9c660-8cfa-4a85-82a9-a92de0445a63.png" alt="T VANAMM Logo" className="w-10 h-10" />
+              <img
+                src="/Uploads/e4d9c660-8cfa-4a85-82a9-a92de0445a63.png"
+                alt="T VANAMM Logo"
+                className="w-10 h-10"
+              />
               <div>
                 <h3 className="text-2xl font-bold text-tea-green">T VANAMM</h3>
                 <p className="text-xs text-muted-foreground">A taste of purity</p>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm">
-              A unit of JKSH United Pvt Ltd
-            </p>
+            <p className="text-muted-foreground text-sm">A unit of JKSH United Pvt Ltd</p>
             <div className="flex items-center text-sm text-muted-foreground">
               <Heart className="h-4 w-4 mr-1 text-red-500" />
               Made with love in India
@@ -29,10 +31,41 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-foreground">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/" className="text-muted-foreground hover:text-tea-green transition-colors">Home</a></li>
-              <li><a href="/about" className="text-muted-foreground hover:text-tea-green transition-colors">About Us</a></li>
-              <li><a href="/order" className="text-muted-foreground hover:text-tea-green transition-colors">Order Now</a></li>
-              <li><a href="/franchise" className="text-muted-foreground hover:text-tea-green transition-colors">Franchise</a></li>
+              <li>
+                <a href="/" className="text-muted-foreground hover:text-tea-green transition-colors">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/about" className="text-muted-foreground hover:text-tea-green transition-colors">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="/order" className="text-muted-foreground hover:text-tea-green transition-colors">
+                  Order Now
+                </a>
+              </li>
+              <li>
+                <a href="/franchise" className="text-muted-foreground hover:text-tea-green transition-colors">
+                  Franchise
+                </a>
+              </li>
+              <li>
+                <a href="/tea-franchise" className="text-muted-foreground hover:text-tea-green transition-colors">
+                  Tea Franchise in India
+                </a>
+              </li>
+              <li>
+                <a href="/chai-franchise" className="text-muted-foreground hover:text-tea-green transition-colors">
+                  Chai Franchise Opportunities
+                </a>
+              </li>
+              <li>
+                <a href="/low-investment-franchise" className="text-muted-foreground hover:text-tea-green transition-colors">
+                  Low Investment Franchise
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -62,26 +95,57 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Interactive Map */}
+          {/* Interactive Map + Social */}
           <div className="space-y-4">
             <h4 className="font-semibold text-foreground">Find Us</h4>
-            <InteractiveMap 
+            <InteractiveMap
               address="Plot No. 12, Rd Number 8, Gayatri Nagar, Vivekananda Nagar, Kukatpally, Hyderabad, Telangana 500072"
               googleMapsLink="https://share.google/oq0ibPT4H5TfWXDaI"
             />
+
+            <div className="flex space-x-4 mt-4">
+              <a
+                href="https://facebook.com/tvanamm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-tea-green transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://instagram.com/tvanamm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-tea-green transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://x.com/tvanamm"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-tea-green transition-colors"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Bottom Section */}
         <div className="border-t border-border pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-muted-foreground">
-              © 2025 T VANAMM. All rights reserved.
-            </p>
+            <p className="text-sm text-muted-foreground">© 2025 T VANAMM. All rights reserved.</p>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-tea-green transition-colors">Privacy Policy</a>
-              <a href="#" className="text-muted-foreground hover:text-tea-green transition-colors">Terms of Service</a>
-              <a href="/contact" className="text-muted-foreground hover:text-tea-green transition-colors">Contact</a>
+              <a href="/privacy-policy" className="text-muted-foreground hover:text-tea-green transition-colors">
+                Privacy Policy
+              </a>
+              <a href="/terms" className="text-muted-foreground hover:text-tea-green transition-colors">
+                Terms of Service
+              </a>
+              <a href="/contact" className="text-muted-foreground hover:text-tea-green transition-colors">
+                Contact
+              </a>
             </div>
           </div>
         </div>
